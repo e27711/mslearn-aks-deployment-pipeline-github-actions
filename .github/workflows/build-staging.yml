@@ -56,3 +56,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      
+      - name: Install Helm
+        uses: Azure/setup-helm@v2.0
+        with:
+          # Version of helm
+          version: 3.3.1
+
+      - name: Get AKS Credentials
+        uses: Azure/aks-set-context@v2.1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          # Resource Group Name
+          resource-group: mslearn-gh-pipelines-6452
+          # AKS Cluster Name
+          cluster-name: contoso-video
+          # AKS Cluster Subscription
+          subscription: # optional
+          # Get cluster admin credentials. Values: true or false
+          admin: # optional
